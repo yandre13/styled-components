@@ -1,12 +1,13 @@
 import React from 'react'
-import { Button, Line } from './styles'
+import { Hamburger, Stripe } from './styles'
 
 
-export const ToggleButton = ({setShow})=>(
+export const ToggleButton = ({show, setShow})=>(
 
-    <Button onClick={setShow}>
-        <Line></Line>
-        <Line></Line>
-        <Line></Line>
-    </Button>
+    
+    <Hamburger show={show} onClick={setShow}>
+        <Stripe className='top'></Stripe>
+        <Stripe className='middle'></Stripe>
+        <Stripe className='bottom'></Stripe>
+    </Hamburger>
 )

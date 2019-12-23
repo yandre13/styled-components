@@ -4,7 +4,7 @@ import {createGlobalStyle} from 'styled-components'
 import theme from 'styled-theming'
 
 const backgroundColor = theme('mode', {
-    dark: '#283747',
+    dark: '#000',
     light: '#eee'
 }),
     color = theme('mode', {
@@ -21,8 +21,9 @@ export const GlobalStyle = createGlobalStyle`
 body{
     height: 100vh;
     overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background: ${backgroundColor};
+    font-size: 16px;
     color: ${color};
 }
 `

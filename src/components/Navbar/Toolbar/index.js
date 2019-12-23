@@ -1,25 +1,37 @@
-import React from 'react'
-import { Header, Nav, Logo, Items } from './styles'
+import React, {useState, useEffect} from 'react'
+import { Header, Nav, Logo, Items, ContainerButton } from './styles'
 import { ToggleButton } from '../ToogleButton'
 import { Container } from '../../Container'
 
-export const Toolbar = ({setShow, width, right, transparent})=>(
-    <Header transparent={transparent}>
-        <Container nav={true}>
+export const Toolbar = ({show, setShow, width, right})=>{
+    
+    const [transparent, setTransparent] = useState(0),
+     innerHeight = window.innerHeight - 30,
+     innerMiddleHeight = window.innerHeight / 4
+
+    useEffect(()=>{
+        window.addEventListener('scroll', ()=>setTransparent(window.scrollY))
+        return ()=>window.removeEventListener('scroll', ()=>setTransparent(window.scrollY))
+    },[transparent])
+
+
+    return (<Header transparent={transparent} innerHeight={innerHeight} innerMiddleHeight={innerMiddleHeight}>
+        <Container>
             <Nav right={right}>
-                <div>
                 {width < 768 && 
-                    <ToggleButton setShow={setShow}/>
+                <ContainerButton>
+                    <ToggleButton show={show} setShow={setShow}/>
+                </ContainerButton>
                 }
-                </div>
-                <Logo><a href='/'>LOGO</a></Logo>
-                <Items right={right}>
+                <Logo><a href='/'>rightaway<br/></a></Logo>
+                
+                {width > 768 && <Items right={right}>
                     <ul>
                         <li><a href='/'>Products</a></li>
                         <li><a href='/'>Users</a></li>
                     </ul>
-                </Items>
+                </Items>}
             </Nav>
         </Container>
-    </Header>
-)
+    </Header>)
+}

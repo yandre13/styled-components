@@ -4,16 +4,16 @@ import theme from 'styled-theming'
 
 const backgroundColorNavDrawer = theme('mode', {
     light: '#fff',
-    dark: 'rgba(0,0,0,.7)'
+    dark: '#212121'
 })
 
 export const NavDrawer = styled.nav`
 height: 100%;
 background: ${backgroundColorNavDrawer};
-box-shadow: 1px 0 8px rgba(0,0,0,.5);
+box-shadow: ${props=>props.right ? '-2px 0 8px  rgba(0,0,0,.7)' : '2px 0 8px rgba(0,0,0,.7)'};
 position: fixed;
-top: 0;
-left: 0;
+top: 56px;
+${props=>props.right && css`right: 0;`}
 width: 78vw;
 max-width: 300px;
 z-index: 200;
@@ -22,7 +22,7 @@ transform: translateX(0);
 transition: transform .2s ease-out;
 `:
 css`
-transform: translateX(-100%);
+transform: translateX(${props=>props.right ? '101%' : '-101%'});
 transition: transform .2s ease-out;
 `
 }
@@ -30,6 +30,7 @@ transition: transform .2s ease-out;
 & ul{
     display: flex;
     flex-direction: column;
+    list-style: none;
 }
 
 @media (min-width: 769px) {
